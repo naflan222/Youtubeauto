@@ -1,6 +1,6 @@
 # Observed implementation verification
 
-Verified on **2026-11-07**. Rendering, uploads, and account setup are separate claims: **no YouTube upload was attempted**, because Google credentials and an expected channel have not been supplied.
+Initial implementation previews verified on **2026-11-07**. At that initial stage, **no YouTube upload was attempted** because Google credentials and an expected channel had not yet been supplied. Later account setup and fixes are described separately below.
 
 ## Source and actual workflow runs
 
@@ -77,3 +77,9 @@ The corrected implementation at `c29f820739461457e9f8fc6e2e4147d52173a9fb` also 
 - [Daily original Short in explicit preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42353171258): successful complete preview; no upload attempted.
 
 For an existing journal entry with `status: uploaded`, recover that job ID rather than creating a replacement video. The audio correction does not require deleting or replacing already accepted uploads.
+
+## Limited OAuth scope correction
+
+The initial private-to-public implementation incorrectly assumed `youtube.upload` plus `youtube.readonly` authorized `videos.update`. The [current official update reference](https://developers.google.com/youtube/v3/docs/videos/update#authorization), checked on 2026-11-07, requires a broader scope. The corrected implementation preserves the existing limited grant, requests public visibility in `videos.insert` after local validation, and verifies processing and public status without calling update. An older private upload needs one manual visibility change in Studio followed by recovery of its existing ID; future successful public insertions need no manual publication.
+
+Local suite: **72 tests passed**. Tests cover public insertion with the made-for-kids setting, no mutation of disclosure during verification, private legacy recovery without another insertion or an unauthorized update, and API diagnostics that show only allowlisted codes while omitting raw bodies and credential-bearing URLs.

@@ -1,6 +1,6 @@
 # Recovery and troubleshooting
 
-Failures name the stage in the job summary. Logs suppress raw Google/HTTP errors to avoid exposing credentials. Never paste tokens or OAuth callback URLs into an issue.
+Failures name the stage in the job summary. Logs suppress raw Google/HTTP bodies and URLs to avoid exposing credentials. They retain the HTTP status and allowlisted API reason codes for diagnosis. Never paste tokens or OAuth callback URLs into an issue.
 
 ## Interrupted upload: do not start a replacement
 
@@ -10,7 +10,7 @@ Each live run writes an `upload-intent` record **before** inserting a video. A c
 - **Intent or ambiguous response:** reconciliation may find it and resume. If it cannot, the workflow stops. API visibility can lag; a negative search is not proof an upload failed.
 - **Earlier unresolved day:** newer daily jobs stop too, preserving order and avoiding accumulating orphans.
 
-Open **Actions → Daily original Short → Run workflow**, select `recover`, and enter the exact job ID in `recover_job`. Keep the two upload opt-ins enabled. Recovery never creates a fresh insertion. It works for earlier dates as well as today's date. It can publish an already uploaded private video after processing succeeds, which is why it requires the explicit upload opt-in.
+Open **Actions → Daily original Short → Run workflow**, select `recover`, and enter the exact job ID in `recover_job`. Keep the two upload opt-ins enabled. Recovery never creates a fresh insertion. It works for earlier dates as well as today's date. It checks processing and public visibility for the already uploaded video and records the result. It cannot change a private video to public with the limited upload/read-only scopes. For a legacy private upload, make the one-time visibility change below, then recover the same job.
 
 Inspect YouTube Studio's **Content** list, including private videos and processing/rejected entries. Match the job marker in the description. Do not remove this marker while recovery is pending.
 
@@ -19,6 +19,19 @@ If a video exists but API reconciliation cannot see it, check the authorized acc
 **Only after you establish that no upload was created** may you deliberately reset that one record to `status: "selected"` with `video_id: null`. Preserve its topic and fingerprint and all other records. This is an explicit human recovery decision, not an automated inference. A new attempt is allowed only for the same daily job while it is still that Colombo date; for past days, leave the repaired selected record reserved and let the next scheduled day choose another unused topic. Recheck Studio before any retry. The software cannot guarantee exactly-once delivery across YouTube and GitHub.
 
 Never delete the journal, remove a successful record, reset fingerprints, or use a new daily ID just to get around a blocked upload. State updates are meaningful records, not schedule keep-alives.
+
+## One-time recovery for an older private upload
+
+Earlier code uploaded privately and attempted `videos.update` to make it public. The configured upload/read-only scopes do not authorize that endpoint. Current code keeps those limited scopes and requests public visibility at insertion, after local validation; future daily videos do not need a manual visibility change.
+
+For a private video already accepted by the older code:
+
+1. Open the official **YouTube Studio** app, signed into the expected channel.
+2. Open **Content**, find the existing video, then tap its edit/pencil button.
+3. Set **Visibility → Public** and tap **Save/Publish**. Follow any account restrictions YouTube displays.
+4. In GitHub, run **Daily original Short → recover** with the existing job ID. The bot verifies the same video and records the public URL; it does not create another insertion.
+
+If you deliberately want a video to remain private, leave it private and pause the workflow. Do not broaden OAuth grants or delete state just to silence recovery errors. A different private-first automation design would require a separately authorized management scope.
 
 ## Common failures
 
@@ -31,7 +44,7 @@ Never delete the journal, remove a successful record, reset fingerprints, or use
 | Revoked or expired token | Run the local helper again (see ANDROID.md on a phone) and replace Secrets. Inspect Google account third-party access and organization policies. |
 | State 403 / conflict | Check `contents: write`, repository rules, and `shorts-state`. Preserve existing state; retry only after fixing access. |
 | Ambiguous upload / processing timeout | Use recovery, not a new upload. Processing can take longer than the polling window. |
-| Private status remains | Check actual channel/account restrictions and Studio. Do not evade restrictions with browser automation. |
+| Private status remains | For a legacy private upload, change Visibility in Studio once, then recover its existing job. New public-insertion failures must follow actual account restrictions; do not bypass them. |
 | Quota / rate limit | Check the project's Quotas page; wait for reset or review unexpected consumers. No paid quota upgrade is needed for one daily video. |
 | Model download / checksum failure | Retry a temporary outage; do not disable checksum validation. Investigate upstream changes before editing the lock. |
 | Audio peak validation fails | Update to the current source and run preview. Audio is now encoded and true-peak checked before rendering, with bounded gain correction. For an already uploaded video, use recovery instead of uploading again. |

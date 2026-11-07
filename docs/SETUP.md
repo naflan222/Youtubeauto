@@ -61,7 +61,7 @@ Edit `config.toml` with GitHub's pencil icon. Set `expected_channel_id` to your 
 2. Under **Settings → Secrets and variables → Actions → Variables**, create `UPLOAD_ENABLED` with value `true`. This is a variable, not a Google secret.
 3. Open **Actions → Daily original Short → Run workflow**. Choose `publish`, then start it. The workflow checks that both opt-ins are enabled and the correct channel is authorized.
 4. Watch the job summary. A successful live run includes the actual video URL and saves it on `shorts-state`. No upload has been proven until this happens with your account.
-5. Daily runs use 12:45 UTC, approximately 6:15 PM Sri Lanka time. They upload privately first, wait for successful processing, and then request public status. Account restrictions can prevent publication; the job fails rather than claiming success.
+5. Daily runs use 12:45 UTC, approximately 6:15 PM Sri Lanka time. They request public visibility when uploading, after all local checks pass, then verify processing and actual public status. The limited upload/read scopes do not allow changing privacy afterward. Account restrictions can prevent publication; the job fails rather than claiming success.
 
 To pause uploads, set the variable `UPLOAD_ENABLED` to `false`. Scheduled runs then render preview only, unless you disable the workflow entirely. Manual preview also never uploads, regardless of this variable. Pending recovery must be completed before another new daily upload.
 

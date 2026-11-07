@@ -3,11 +3,12 @@ import json
 import os
 from pathlib import Path
 import sys
+from googleapiclient.errors import HttpError
 from .config import Config, job_id
 from .content import save_script, TOPICS
 from .selection import discover, select_topic
 from .state import LocalState, GitHubState, StateError
-from .youtube import client_from_env, verify_channel, category_id, publish, RecoveryRequired
+from .youtube import client_from_env, verify_channel, category_id, publish, RecoveryRequired, describe_api_error
 from .narration import narrate
 from .render import render
 from .validate import validate_content, validate_media
@@ -96,7 +97,10 @@ def main():
             summary('Preview only: no YouTube credentials used, no upload attempted, no live state changed.')
     except Exception as error:
         # Never print Google/HTTP exception bodies: they can contain credentials or request data.
-        safe=str(error) if isinstance(error,(ValueError,RecoveryRequired,StateError)) else type(error).__name__+' (details suppressed to protect secrets)'
+        if isinstance(error,HttpError):
+            safe=describe_api_error(error)
+        else:
+            safe=str(error) if isinstance(error,(ValueError,RecoveryRequired,StateError)) else type(error).__name__+' (details suppressed to protect secrets)'
         summary('FAILED stage: '+stage+'. '+safe)
         sys.exit(1)
 

@@ -10,7 +10,7 @@ Pip Bunny and Tilly Turtle explore counting, colors, shapes, animal facts, kindn
 
 Unzip the artifact and play `preview.mp4`. Artifacts expire after three days; rerun **Preview and tests** for a new video. Small sample scripts/reports remain in `examples/sample/`; videos are never committed to Git.
 
-Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 70 passed, including Android authorization and encoded-audio recovery checks. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). No live YouTube upload has been attempted.
+Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 72 passed, including Android authorization, encoded-audio correction, and limited-scope publication checks. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). The linked implementation previews did not upload; account-dependent publication is configured separately.
 
 ## Start here
 
@@ -60,7 +60,7 @@ The first preview downloads the approximately 63 MB voice model from Hugging Fac
 
 Changing `timezone` or `target_time` does **not** rewrite Actions YAML. Update the cron in `.github/workflows/daily.yml` too, calculating UTC for the intended timezone; test the new conversion. Asia/Colombo has no daylight-saving adjustment. Dimensions and frame rate are deliberately locked to the tested Shorts profile.
 
-The live stages check credentials/channel, choose an unused story, generate metadata, synthesize narration/captions, render, validate, reconcile channel uploads, upload privately, verify processing, publish, and persist the URL. Known unfinished uploads are resumed before new rendering. An unresolved earlier day blocks later publication until recovered.
+The live stages check credentials/channel, choose an unused story, generate metadata, synthesize narration/captions, render, validate, reconcile channel uploads, upload with public visibility after all local checks pass, verify processing/publication, and persist the URL. Known unfinished uploads are resumed before new rendering. An unresolved earlier day blocks later publication until recovered.
 
 State is small JSON on **`shorts-state`**, separate from source. It records the daily job ID, topic, theme, script fingerprint, status, video ID, URL, and completion time. The branch is created automatically on the first enabled run. Do not delete it or force-push it. Rendered videos and credential files are ignored by Git. Review artifacts expire after **3 days**; download samples you wish to keep.
 

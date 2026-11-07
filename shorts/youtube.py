@@ -1,5 +1,7 @@
 """Official OAuth client and conservative resumable upload recovery."""
 import os
+import json
+from urllib.parse import urlsplit
 import time
 import socket
 from google.oauth2.credentials import Credentials
@@ -13,6 +15,28 @@ from .oauth import SCOPES
 
 class RecoveryRequired(RuntimeError):
     pass
+
+
+def describe_api_error(error):
+    """Return only allowlisted diagnostic codes; never a raw API body or URL."""
+    allowed = {
+        'insufficientPermissions', 'forbidden', 'forbiddenPrivacySetting',
+        'quotaExceeded', 'dailyLimitExceeded', 'rateLimitExceeded',
+        'userRateLimitExceeded', 'accessNotConfigured', 'videoNotFound',
+        'playlistNotFound', 'invalidVideoMetadata', 'uploadLimitExceeded',
+        'authError', 'youtubeSignupRequired', 'channelClosed', 'channelSuspended',
+    }
+    reason = 'unclassified'
+    try:
+        details = json.loads(error.content).get('error', {}).get('errors', [])
+        reason = next((item['reason'] for item in details if item.get('reason') in allowed), reason)
+    except (ValueError, TypeError, KeyError, AttributeError):
+        pass
+    code = getattr(error.resp, 'status', None)
+    code = code if isinstance(code, int) and 100 <= code <= 599 else 'unknown'
+    endpoint = urlsplit(getattr(error, 'uri', '') or '').path.rsplit('/', 1)[-1]
+    endpoint = endpoint if endpoint in {'videos', 'channels', 'playlistItems', 'videoCategories'} else 'request'
+    return f'YouTube {endpoint}: HTTP {code}, reason={reason}. Check docs/RECOVERY.md; no replacement upload should be started.'
 
 
 def client_from_env():
@@ -98,10 +122,12 @@ def processing_and_publish(youtube, video_id, expected, sleeper=time.sleep, atte
         sleeper(15)
     if not ready:raise RecoveryRequired('Processing not complete yet; rerun to verify the existing video ID')
     if status.get('privacyStatus')!='public':
-        update={'privacyStatus':'public','selfDeclaredMadeForKids':True}
-        for field in ['license','embeddable','publicStatsViewable','containsSyntheticMedia']:
-            if field in status:update[field]=status[field]
-        youtube.videos().update(part='status',body={'id':video_id,'status':update}).execute()
+        raise RecoveryRequired(
+            'Existing video is not public. Open YouTube Studio > Content, select this '
+            'video, set Visibility to Public and save, then recover the same job ID. '
+            'The limited upload/read grant cannot change privacy with videos.update. '
+            'No replacement video was uploaded.'
+        )
     result=youtube.videos().list(part='status',id=video_id).execute()['items'][0]['status']
     if result.get('privacyStatus')!='public' or result.get('selfDeclaredMadeForKids') is not True:
         raise RecoveryRequired('Public publication was not confirmed; inspect account restrictions in Studio')
@@ -127,7 +153,7 @@ def publish(youtube,uploads,store,job,script,video,config,category):
         raise RecoveryRequired('Unresolved upload intent: no matching video found. Inspect Studio, wait for API visibility, then use the documented recovery procedure. No duplicate upload attempted.')
     record.update(status='upload-intent',started_at=utcnow())
     store.save(record)  # A failed durable write MUST prevent insertion.
-    body={'snippet':{'title':script['title'],'description':script['description']+'\n\n'+' '.join(script['hashtags'])+'\n\n'+marker(job),'tags':script['tags'],'categoryId':category,'defaultLanguage':'en','defaultAudioLanguage':'en'},'status':{'privacyStatus':'private','selfDeclaredMadeForKids':True,'containsSyntheticMedia':config.contains_synthetic_media}}
+    body={'snippet':{'title':script['title'],'description':script['description']+'\n\n'+' '.join(script['hashtags'])+'\n\n'+marker(job),'tags':script['tags'],'categoryId':category,'defaultLanguage':'en','defaultAudioLanguage':'en'},'status':{'privacyStatus':'public','selfDeclaredMadeForKids':True,'containsSyntheticMedia':config.contains_synthetic_media}}
     try:
         video_id=resumable_insert(youtube,body,video)
     except Exception:

@@ -123,12 +123,12 @@ def test_known_video_id_resumes_processing_not_upload(tmp_path):
     assert result['publication_url']=='url';insert.assert_not_called()
 
 
-def test_upload_body_is_private_child_directed_then_published(tmp_path):
+def test_validated_video_is_inserted_public_with_child_directed_status(tmp_path):
     script=fixture_script(tmp_path);store=LocalState(tmp_path/'state')
     with patch('shorts.youtube.reconcile',return_value=None),patch('shorts.youtube.resumable_insert',return_value='new-id') as insert,patch('shorts.youtube.processing_and_publish',return_value='url'):
         result=publish(Mock(),'uploads',store,script['job_id'],script,tmp_path/'video',Config(),'27')
     body=insert.call_args.args[1]
-    assert body['status']=={'privacyStatus':'private','selfDeclaredMadeForKids':True,'containsSyntheticMedia':False}
+    assert body['status']=={'privacyStatus':'public','selfDeclaredMadeForKids':True,'containsSyntheticMedia':False}
     assert marker(script['job_id']) in body['snippet']['description']
     assert result['status']=='published'
 
@@ -182,11 +182,34 @@ def test_real_render_validation_if_present():
     assert validate_media(out,Config(),script,{})['passed']
 
 
-def test_publication_preserves_synthetic_disclosure():
+def test_publication_verification_does_not_change_disclosure_or_require_update_scope():
     youtube=Mock()
-    initial={'snippet':{'channelId':'UCexpected'},'status':{'selfDeclaredMadeForKids':True,'containsSyntheticMedia':True,'privacyStatus':'private','uploadStatus':'processed','license':'youtube','embeddable':True},'processingDetails':{'processingStatus':'succeeded'}}
+    initial={'snippet':{'channelId':'UCexpected'},'status':{'selfDeclaredMadeForKids':True,'containsSyntheticMedia':True,'privacyStatus':'public','uploadStatus':'processed','license':'youtube','embeddable':True},'processingDetails':{'processingStatus':'succeeded'}}
     final={'status':{'selfDeclaredMadeForKids':True,'containsSyntheticMedia':True,'privacyStatus':'public'}}
     youtube.videos.return_value.list.return_value.execute.side_effect=[{'items':[initial]},{'items':[final]}]
     assert processing_and_publish(youtube,'id','UCexpected',sleeper=lambda _:None).endswith('/id')
-    updated=youtube.videos.return_value.update.call_args.kwargs['body']['status']
-    assert updated['containsSyntheticMedia'] is True and updated['license']=='youtube'
+    youtube.videos.return_value.update.assert_not_called()
+    assert initial['status']['containsSyntheticMedia'] is True and initial['status']['license']=='youtube'
+
+
+def test_legacy_private_video_requires_studio_visibility_change_not_new_permissions():
+    youtube=Mock()
+    video={'snippet':{'channelId':'UCexpected'},'status':{'selfDeclaredMadeForKids':True,'privacyStatus':'private','uploadStatus':'processed'},'processingDetails':{'processingStatus':'succeeded'}}
+    youtube.videos.return_value.list.return_value.execute.return_value={'items':[video]}
+    with pytest.raises(RecoveryRequired,match='YouTube Studio'):
+        processing_and_publish(youtube,'existing','UCexpected',sleeper=lambda _:None)
+    youtube.videos.return_value.update.assert_not_called()
+    youtube.videos.return_value.insert.assert_not_called()
+
+
+def test_api_errors_show_only_allowlisted_reason_status_and_endpoint():
+    from googleapiclient.errors import HttpError
+    from httplib2 import Response
+    from shorts.youtube import describe_api_error
+    error=HttpError(Response({'status':'403'}),json.dumps({'error':{'message':'secret response details','errors':[{'reason':'insufficientPermissions'}]}}).encode(),uri='https://www.googleapis.com/youtube/v3/videos?access_token=private-value')
+    text=describe_api_error(error)
+    assert 'HTTP 403' in text and 'insufficientPermissions' in text and 'videos' in text
+    assert 'secret response details' not in text and 'private-value' not in text
+    error.content=json.dumps({'error':{'errors':[{'reason':'private-value'}]}}).encode()
+    assert 'private-value' not in describe_api_error(error)
+    assert 'unclassified' in describe_api_error(error)
