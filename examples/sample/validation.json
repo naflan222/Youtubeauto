@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "duration_seconds": 31.9,
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "fps": "30",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -17.3,
+  "peak_volume_db": -1.3,
+  "captions": "Measured scene-level synchronization; safe margins passed",
+  "sha256": "57905c82fd97d5fd59800facb1e6b0260d81b73596a64a7e01d9ba20222160e4",
+  "selfDeclaredMadeForKids": true
+}

@@ -22,18 +22,21 @@ The first daily preview exposed an AAC peak issue, correctly preventing publicat
 
 ## Downloadable sample
 
-[Release and all sample assets](https://github.com/naflan222/Youtubeauto/releases/tag/v1.0.0)
+[Download the successful preview workflow artifact ZIP](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314/artifacts/13562124110). It contains the full MP4, captions, metadata, representative frames, and validation report. GitHub sign-in may be required. **Artifacts expire after three days**; rerun the preview workflow to generate another downloadable video.
 
-- [Complete MP4](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/preview.mp4)
-- [Script and metadata](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/script.json)
-- [Readable script](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/script.txt)
-- [Captions](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/captions.srt)
-- [Measured media validation](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/validation.json)
-- [Independent speech check](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/speech-verification.json)
+Small permanent sample records:
 
-The release copy was rendered locally by the same tested implementation. Each workflow independently rendered and validated its own sample. Piper synthesis has stochastic variation, so waveform hashes need not match between runs.
+- [Script and metadata](../examples/sample/script.json)
+- [Readable script](../examples/sample/script.txt)
+- [Captions](../examples/sample/captions.srt)
+- [Measured media validation](../examples/sample/validation.json)
+- [Independent speech check](../examples/sample/speech-verification.json)
 
-Local release sample results:
+A complete local copy is also provided in the task workspace under `library-files/youtubeauto-preview/preview.mp4`. The available GitHub credential was rejected by the release-attachment endpoint, so no release download is claimed. The failed release creation left no release behind.
+
+The local sample was rendered by the same tested implementation. Each workflow independently rendered and validated its own sample. Piper synthesis has stochastic variation, so waveform hashes need not match between runs.
+
+Local sample results:
 
 | Property | Observed |
 | --- | --- |

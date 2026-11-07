@@ -1,0 +1,51 @@
+{
+  "job_id": "wonder-2026-11-07",
+  "topic": "which-more",
+  "theme": "puzzle",
+  "title": "Which Group Has More Flowers?",
+  "description": "Compare groups of two and four. Join Pip Bunny and Tilly Turtle in an original animated story from Little Wonder Friends.",
+  "hashtags": [
+    "#Shorts",
+    "#LearningForKids",
+    "#LearningPuzzles"
+  ],
+  "tags": [
+    "original animation",
+    "children's learning",
+    "comparing",
+    "counting",
+    "visual puzzle"
+  ],
+  "learning_goal": "Compare groups of two and four.",
+  "audience": "children aged 4\u20138",
+  "selfDeclaredMadeForKids": true,
+  "containsSyntheticMedia": false,
+  "fingerprint": "606d797a5091b386d06e50caf03f608e68e2830e44e23b3bc779f09a46f86706",
+  "selection": {
+    "mode": "evergreen-fallback",
+    "reason": "No authenticated discovery client; evergreen fallback"
+  },
+  "educational_source": "",
+  "scenes": [
+    {
+      "narration": "Pip puts two flowers on one side of his picture.",
+      "visual": "flower:2"
+    },
+    {
+      "narration": "Tilly puts four flowers on the other side of the picture.",
+      "visual": "flower:4"
+    },
+    {
+      "narration": "Which group has more flowers? Let's count each group with care.",
+      "visual": "compare-flowers"
+    },
+    {
+      "narration": "Two on Pip's side, and four on Tilly's side: four is more.",
+      "visual": "compare-flowers"
+    },
+    {
+      "narration": "Counting helps us compare, and every flower makes their picture lovely.",
+      "visual": "flowers"
+    }
+  ]
+}

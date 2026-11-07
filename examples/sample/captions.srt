@@ -1,0 +1,19 @@
+1
+00:00:00,000 --> 00:00:04,741
+Pip puts two flowers on one side of his picture.
+
+2
+00:00:04,741 --> 00:00:09,743
+Tilly puts four flowers on the other side of the picture.
+
+3
+00:00:09,743 --> 00:00:16,603
+Which group has more flowers? Let's count each group with care.
+
+4
+00:00:16,603 --> 00:00:24,634
+Two on Pip's side, and four on Tilly's side: four is more.
+
+5
+00:00:24,634 --> 00:00:31,887
+Counting helps us compare, and every flower makes their picture lovely.

@@ -1,0 +1,9 @@
+{
+  "method": "Independent offline faster-whisper tiny.en transcription, CPU int8; verification only, not a runtime dependency",
+  "transcript": "Pick puts two flowers on one side of his picture. Tilly puts four flowers on the other side of the picture, which group has more flowers. Let's count each group with care. Two on pit's side and four on tilly's side, four is more. Counting helps us compare, and every flower makes their picture lovely.",
+  "expected": "Pip puts two flowers on one side of his picture. Tilly puts four flowers on the other side of the picture. Which group has more flowers? Let's count each group with care. Two on Pip's side, and four on Tilly's side: four is more. Counting helps us compare, and every flower makes their picture lovely.",
+  "word_sequence_similarity": 0.9636363636363636,
+  "language": "en",
+  "video_sha256": "57905c82fd97d5fd59800facb1e6b0260d81b73596a64a7e01d9ba20222160e4",
+  "limitation": "ASR similarity is evidence of intelligibility, not a human listening assessment."
+}
