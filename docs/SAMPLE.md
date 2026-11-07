@@ -18,6 +18,6 @@
 4. Two on Pip's side, and four on Tilly's side: four is more.
 5. Counting helps us compare, and every flower makes their picture lovely.
 
-The complete MP4, actual measured validation results, caption file, and script metadata accompany the GitHub preview run's artifact. A release copy of this evergreen sample is provided separately so it does not enter Git history. See the root README for links once verification finishes.
+The complete MP4, actual measured validation results, caption file, and script metadata accompany the GitHub preview run's artifact. A [release copy of this evergreen sample](https://github.com/naflan222/Youtubeauto/releases/tag/v1.0.0) is provided separately so it does not enter Git history. See [verification results](VERIFICATION.md).
 
 The output is approximately 32 seconds, 1080 × 1920, 30 fps, H.264/yuv420p video with AAC narration. ffprobe, silence/black-gap detection, metadata checks, mobile caption layout checks, and the duplicate/audience checks run before any publication. Captions are aligned to each measured spoken sentence. No live YouTube upload is claimed by this preview.

@@ -4,6 +4,12 @@ A free-software Python pipeline that makes a complete original educational Short
 
 Pip Bunny and Tilly Turtle explore counting, colors, shapes, animal facts, kindness, visual puzzles, nature, space, and short stories. The repository includes **40 distinct, authored episodes**, five scenes each. It deliberately stops after these are used: add another reviewed content pack for continued operation. It does not pretend a finite template library can create unlimited original stories.
 
+## Verified sample and workflows
+
+[Watch/download the complete sample](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/preview.mp4) · [Script and metadata](https://github.com/naflan222/Youtubeauto/releases/download/v1.0.0/script.json) · [All sample assets](https://github.com/naflan222/Youtubeauto/releases/tag/v1.0.0)
+
+Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 58 passed. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). No live YouTube upload has been attempted.
+
 ## Start here
 
 1. Open **Actions → Preview and tests**. A push to `main` automatically renders a complete sample; alternatively choose **Run workflow**. Download the `preview-…` artifact to watch `preview.mp4` and read `script.json`, captions, and the validation report.
