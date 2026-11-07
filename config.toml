@@ -1,4 +1,4 @@
-channel_name = "Little Wonder Friends"
+channel_name = "Story Spectrum"
 audience = "children aged 4–8"
 language = "en-US"
 min_duration = 25
@@ -9,7 +9,7 @@ fps = 30
 timezone = "Asia/Colombo"
 target_time = "18:15"
 # Also update .github/workflows/daily.yml when changing the schedule.
-expected_channel_id = ""
+expected_channel_id = "UC9EhlngjJGxAA8Rc4vD15Hg"
 region = "US"
 category_name = "Education"
 upload_enabled = false
