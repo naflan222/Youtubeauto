@@ -64,3 +64,9 @@ The OAuth browser consent flow, actual authenticated channel identity, live disc
 Android setup support is committed at **`259e0aa552d269849dcd8478373e411497742863`**. The [updated GitHub preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42344520053) succeeded, including a separate authorization-only environment, the tests, and a complete video preview. Local tests: **66 passed**. The isolated helper installation passed `pip check` without Piper, FFmpeg, or the Google API upload-client package. The uploader continues to use the official Google API client; the small helper uses Google's OAuth library and authorized transport to check the official channels endpoint.
 
 Tests cover manual-browser loopback settings, channel mismatch, absent offline tokens, existing-file preservation, private output permissions, external Termux browser registration, and redacted error handling. The actual Android browser/Google consent flow has **not** been observed with an Android device or the owner's account. Follow [ANDROID.md](ANDROID.md) to complete that account-dependent step.
+
+## Encoded-audio peak correction
+
+A later daily preview exposed intermittent AAC overshoot despite pre-encode normalization. The corrected renderer encodes narration first, measures the decoded AAC true peak, and performs up to three bounded encoding attempts from the original WAV if gain correction is needed. Accepted AAC is copied into the MP4 without another encode; the final media validation remains mandatory.
+
+Local checks: **70 tests passed** and a full 31.9-second preview passed with a decoded sample peak of **−3.7 dB** and measured AAC true peak **−3.67 dBTP**. Regression tests cover resampling/transients, the actual AAC encode/remux path, bounded overshoot correction, and rejection of persistently unsafe or quiet audio.

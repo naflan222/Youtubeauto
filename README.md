@@ -10,7 +10,7 @@ Pip Bunny and Tilly Turtle explore counting, colors, shapes, animal facts, kindn
 
 Unzip the artifact and play `preview.mp4`. Artifacts expire after three days; rerun **Preview and tests** for a new video. Small sample scripts/reports remain in `examples/sample/`; videos are never committed to Git.
 
-Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 66 passed, including the Android authorization helper. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). No live YouTube upload has been attempted.
+Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 70 passed, including Android authorization and encoded-audio recovery checks. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). No live YouTube upload has been attempted.
 
 ## Start here
 
@@ -26,7 +26,7 @@ Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/run
 
 - 1080 × 1920 portrait MP4, 30 fps, approximately 32 seconds (configurable within 25–40).
 - Original Pillow graphics, recurring characters, gentle motion, safe text margins, and a complete final frame. Graphics use a 540 × 960 logical canvas and Lanczos scaling to the 1080p delivery frame.
-- Offline Piper narration with a pinned, checksum-verified LJSpeech model. No music or third-party video clips.
+- Offline Piper narration with a pinned, checksum-verified LJSpeech model. The actual AAC output is checked for true-peak overshoot and corrected before rendering, then copied into the MP4 without re-encoding. No music or third-party video clips.
 - Captions burned into the video and an SRT sidecar. Captions use **measured sentence/scene timing**, not word-level highlighting.
 - Accurate title under 65 characters, description, three relevant hashtags including `#Shorts`, and API tags.
 - `script.json`, `script.txt`, `timeline.json`, `caption-layout.json`, sample scene images, `validation.json`, and, after publication, `result.json`.

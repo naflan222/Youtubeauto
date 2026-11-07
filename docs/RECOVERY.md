@@ -34,6 +34,7 @@ Never delete the journal, remove a successful record, reset fingerprints, or use
 | Private status remains | Check actual channel/account restrictions and Studio. Do not evade restrictions with browser automation. |
 | Quota / rate limit | Check the project's Quotas page; wait for reset or review unexpected consumers. No paid quota upgrade is needed for one daily video. |
 | Model download / checksum failure | Retry a temporary outage; do not disable checksum validation. Investigate upstream changes before editing the lock. |
+| Audio peak validation fails | Update to the current source and run preview. Audio is now encoded and true-peak checked before rendering, with bounded gain correction. For an already uploaded video, use recovery instead of uploading again. |
 | Render / captions / silence check fails | Download available artifacts, revise the episode/layout, and rerun preview. Publication has been skipped. |
 | Topic library exhausted | Add a reviewed original pack. The current 40 episodes are never automatically recycled. |
 | Schedule stopped | Check Actions enablement, default branch, latest failures, and GitHub's 60-day public-repository inactivity rule. |
