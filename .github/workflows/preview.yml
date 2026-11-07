@@ -1,0 +1,60 @@
+name: Preview and tests
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'shorts/**'
+      - 'tests/**'
+      - 'config.toml'
+      - '*lock*'
+      - 'LICENSES.json'
+      - '.github/workflows/preview.yml'
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
+          python -m pip install -r requirements.lock
+          python -m pip install --no-deps --no-build-isolation -e .
+      - uses: actions/cache@v4
+        with:
+          path: .cache/voice
+          key: piper-ljspeech-${{ runner.os }}-${{ hashFiles('voice.lock.json') }}
+      - run: python -m pytest -q
+      - name: Render and validate a complete preview without credentials
+        run: python -m shorts.cli preview
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: preview-${{ github.run_id }}
+          path: |
+            output/preview.mp4
+            output/script.json
+            output/script.txt
+            output/captions.srt
+            output/timeline.json
+            output/caption-layout.json
+            output/validation.json
+            output/scene-*.png
+            output/final-frame.png
+          retention-days: 3
+          if-no-files-found: ignore

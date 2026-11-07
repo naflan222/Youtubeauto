@@ -1,0 +1,21 @@
+{
+  "revision": "e7229f7d33a10e145e109b886d661984201ac3c4",
+  "license": "MIT (repository); training dataset public domain",
+  "files": [
+    {
+      "name": "en_US-ljspeech-medium.onnx",
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/e7229f7d33a10e145e109b886d661984201ac3c4/en/en_US/ljspeech/medium/en_US-ljspeech-medium.onnx",
+      "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22"
+    },
+    {
+      "name": "en_US-ljspeech-medium.onnx.json",
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/e7229f7d33a10e145e109b886d661984201ac3c4/en/en_US/ljspeech/medium/en_US-ljspeech-medium.onnx.json",
+      "sha256": "141d612cc0a95ed7efc1ca936b845c2364967f2e9217c5dbfcf69fc4d6c65860"
+    },
+    {
+      "name": "MODEL_CARD",
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/e7229f7d33a10e145e109b886d661984201ac3c4/en/en_US/ljspeech/medium/MODEL_CARD",
+      "sha256": "fbee1529c89d36b3fe76d7e9f3f832dce17f44900a52d76a9bda735654766b4d"
+    }
+  ]
+}

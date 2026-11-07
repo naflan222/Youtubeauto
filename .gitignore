@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+.cache/
+output/
+state-local/
+.env
+.env.*
+client_secret*.json
+credentials*.json
+token*.json
+oauth-secrets.txt

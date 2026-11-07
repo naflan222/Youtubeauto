@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "little-wonder-shorts"
+version = "1.0.0"
+description = "Original procedural kids Shorts with local narration and official YouTube uploads"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+dependencies = ["Pillow==11.3.0", "piper-tts==1.3.0", "google-api-python-client==2.187.0", "google-auth-oauthlib==1.2.3"]
+
+[project.scripts]
+wonder-shorts = "shorts.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["shorts*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

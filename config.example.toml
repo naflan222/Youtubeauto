@@ -1,0 +1,17 @@
+channel_name = "Little Wonder Friends"
+audience = "children aged 4–8"
+language = "en-US"
+min_duration = 25
+max_duration = 40
+width = 1080
+height = 1920
+fps = 30
+timezone = "Asia/Colombo"
+target_time = "18:15"
+# Also update .github/workflows/daily.yml when changing the schedule.
+expected_channel_id = ""
+region = "US"
+category_name = "Education"
+upload_enabled = false
+# Ordinary fictional animation is not realistic footage of actual events.
+contains_synthetic_media = false
