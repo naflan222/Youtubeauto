@@ -8,7 +8,7 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from .state import utcnow
 
-SCOPES=['https://www.googleapis.com/auth/youtube.upload','https://www.googleapis.com/auth/youtube.readonly']
+from .oauth import SCOPES
 
 
 class RecoveryRequired(RuntimeError):

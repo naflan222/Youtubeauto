@@ -28,7 +28,7 @@ Never delete the journal, remove a successful record, reset fingerprints, or use
 | Missing credentials | Add all three correctly named Actions Secrets. Do not put them in TOML. |
 | Authorization / channel mismatch | Reauthorize the exact expected YouTube channel, including the correct Brand Account. |
 | OAuth stops after a week | Check External consent Testing status; use appropriate Production configuration and authorize again. |
-| Revoked or expired token | Run the local helper again and replace Secrets. Inspect Google account third-party access and organization policies. |
+| Revoked or expired token | Run the local helper again (see ANDROID.md on a phone) and replace Secrets. Inspect Google account third-party access and organization policies. |
 | State 403 / conflict | Check `contents: write`, repository rules, and `shorts-state`. Preserve existing state; retry only after fixing access. |
 | Ambiguous upload / processing timeout | Use recovery, not a new upload. Processing can take longer than the polling window. |
 | Private status remains | Check actual channel/account restrictions and Studio. Do not evade restrictions with browser automation. |

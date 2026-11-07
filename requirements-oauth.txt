@@ -1,0 +1,15 @@
+# Authorization only. Pure-Python dependencies; no Piper, FFmpeg, or video stack.
+# These versions also appear in requirements.lock for the Linux daily runtime.
+cachetools==6.2.6
+certifi==2026.10.23
+charset-normalizer==3.5.2
+google-auth==2.41.1
+google-auth-oauthlib==1.2.3
+idna==3.20
+oauthlib==4.0.1
+pyasn1==0.6.5
+pyasn1_modules==0.4.2
+requests==2.34.2
+requests-oauthlib==2.0.0
+rsa==4.9.1
+urllib3==2.8.0

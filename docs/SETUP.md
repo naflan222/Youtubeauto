@@ -17,9 +17,11 @@ Unzip and play `preview.mp4`. Read its script and `validation.json`. This pipeli
 
 **Important for unattended operation:** an External OAuth app with publishing status **Testing** normally receives refresh tokens that expire after **7 days** for these scopes. Move the consent configuration to **In production**, satisfy any Google verification requirements shown for your use, and then authorize again to obtain a suitable refresh token. An unverified-app warning, user cap, organization policy, or consent verification requirement may still apply. Follow Google's current console guidance; do not bypass it. OAuth consent verification is distinct from YouTube quota/compliance audits.
 
-## 3. Authorize once — requires a computer
+## 3. Authorize once — Android or computer
 
-Use a trusted computer with a browser, Python 3.12, and a local terminal. No video editing, paid machine, or always-on runtime is needed. This helper also works on a trusted Linux desktop environment with a local browser; a remote/headless environment needs its own correctly forwarded loopback browser access and is not the beginner default.
+**Using Android? Follow [ANDROID.md](ANDROID.md) for Termux, Chrome consent, and copying Secrets, then continue with section 4 below.** You do not need to install the video-rendering stack on the phone.
+
+For the computer alternative, use a trusted computer with a browser, Python 3.12, and a local terminal. No video editing, paid machine, or always-on runtime is needed. This helper also works on a trusted Linux desktop environment with a local browser; a remote/headless environment needs its own correctly forwarded loopback browser access and is not the beginner default.
 
 ```bash
 git clone https://github.com/naflan222/Youtubeauto.git
@@ -33,8 +35,7 @@ Activate it:
 # Linux/macOS
 source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -r requirements.lock
-python -m pip install --no-deps --no-build-isolation -e .
+python -m pip install -r requirements-oauth.txt
 python tools/authorize.py --client /path/to/client_secret_download.json --expected-channel UC_YOUR_REAL_CHANNEL_ID
 ```
 

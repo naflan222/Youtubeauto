@@ -15,7 +15,7 @@ Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/run
 ## Start here
 
 1. Open **Actions → Preview and tests**. A push to `main` automatically renders a complete sample; alternatively choose **Run workflow**. Download the `preview-…` artifact to watch `preview.mp4` and read `script.json`, captions, and the validation report.
-2. Follow **[one-time account setup](docs/SETUP.md)**. Most repository settings work from GitHub on Android. OAuth consent needs a computer with a local browser and Python; no always-on computer is needed afterward.
+2. Follow **[one-time account setup](docs/SETUP.md)**. For Android, use the dedicated **[phone-only Termux guide](docs/ANDROID.md)** for the one-time consent step. A computer is an alternative; no always-on device is needed afterward.
 3. Set your expected YouTube channel ID in `config.toml`. Add the three Google values to **Actions Secrets**. Never commit them.
 4. After reviewing a successful preview, change `upload_enabled = true` in `config.toml` and create repository **Actions variable** `UPLOAD_ENABLED` with value `true`. Both opt-ins are required. Manually run **Daily original Short → publish** for the first live test.
 5. The daily workflow then runs at **12:45 UTC / 6:15 PM Asia/Colombo**, approximately. YouTube processing adds time; GitHub does not guarantee exact starts or publication times.

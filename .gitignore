@@ -11,3 +11,5 @@ client_secret*.json
 credentials*.json
 token*.json
 oauth-secrets.txt
+
+.venv-oauth/

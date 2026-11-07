@@ -5,6 +5,8 @@ on:
     paths:
       - 'shorts/**'
       - 'tests/**'
+      - 'tools/**'
+      - 'requirements-oauth.txt'
       - 'config.toml'
       - '*lock*'
       - 'LICENSES.json'
@@ -39,6 +41,13 @@ jobs:
         with:
           path: .cache/voice
           key: piper-ljspeech-${{ runner.os }}-${{ hashFiles('voice.lock.json') }}
+      - name: Verify authorization-only installation
+        run: |
+          python -m venv "$RUNNER_TEMP/oauth-only"
+          "$RUNNER_TEMP/oauth-only/bin/python" -m pip install -r requirements-oauth.txt
+          "$RUNNER_TEMP/oauth-only/bin/python" tools/authorize.py --help
+          "$RUNNER_TEMP/oauth-only/bin/python" -m pip check
+          "$RUNNER_TEMP/oauth-only/bin/python" -c "import importlib.util; assert importlib.util.find_spec('piper') is None; assert importlib.util.find_spec('googleapiclient') is None"
       - run: python -m pytest -q
       - name: Render and validate a complete preview without credentials
         run: python -m shorts.cli preview
