@@ -70,3 +70,10 @@ Tests cover manual-browser loopback settings, channel mismatch, absent offline t
 A later daily preview exposed intermittent AAC overshoot despite pre-encode normalization. The corrected renderer encodes narration first, measures the decoded AAC true peak, and performs up to three bounded encoding attempts from the original WAV if gain correction is needed. Accepted AAC is copied into the MP4 without another encode; the final media validation remains mandatory.
 
 Local checks: **70 tests passed** and a full 31.9-second preview passed with a decoded sample peak of **−3.7 dB** and measured AAC true peak **−3.67 dBTP**. Regression tests cover resampling/transients, the actual AAC encode/remux path, bounded overshoot correction, and rejection of persistently unsafe or quiet audio.
+
+The corrected implementation at `c29f820739461457e9f8fc6e2e4147d52173a9fb` also passed both actual GitHub runs:
+
+- [Preview and tests](https://github.com/naflan222/Youtubeauto/actions/runs/42353170967): successful tests, complete render, media validation, and artifact upload.
+- [Daily original Short in explicit preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42353171258): successful complete preview; no upload attempted.
+
+For an existing journal entry with `status: uploaded`, recover that job ID rather than creating a replacement video. The audio correction does not require deleting or replacing already accepted uploads.
