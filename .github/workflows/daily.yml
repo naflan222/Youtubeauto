@@ -81,6 +81,7 @@ jobs:
             output/timeline.json
             output/caption-layout.json
             output/validation.json
+            output/audio-normalization.json
             output/result.json
             output/scene-*.png
             output/final-frame.png

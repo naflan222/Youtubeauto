@@ -198,12 +198,29 @@ def scene_props(draw, visual, t, progress=0):
     elif count:
         n = int(count)
         if n == 0:
-            prop(draw,'picnic',270,435,110,t)
+            if kind=='star':
+                draw.rounded_rectangle((145,325,395,510),radius=18,fill='#dce8f0',outline=INK,width=2)
+                prop(draw,'star',270,420,55,t)
+            else:
+                prop(draw,'picnic',270,435,110,t)
         else:
             positions = {1:[(270,415)],2:[(190,415),(350,415)],3:[(145,415),(270,415),(395,415)],4:[(190,355),(350,355),(190,490),(350,490)],5:[(145,355),(270,355),(395,355),(205,485),(335,485)]}[n]
             for i,(x,y) in enumerate(positions):
                 prop(draw,kind,x,y+math.sin(t*1.6+i)*3,48 if n>=3 else 65,t)
             centered(draw,str(n),575,34,TEAL)
+    elif kind in ['two-circle-sizes','two-square-sizes']:
+        shape='circle' if 'circle' in kind else 'square'
+        prop(draw,shape,180,420,85,t)
+        prop(draw,shape,365,420,40,t)
+    elif kind in ['circles-mixed','sorted-colors']:
+        for i in range(6):
+            if kind=='sorted-colors':
+                x=175 if i<3 else 365; y=335+(i%3)*85
+                color='#ed8e8c' if i<3 else '#6caacb'
+            else:
+                x=150+(i%3)*120; y=375+(i//3)*110
+                color='#ed8e8c' if i%2==0 else '#6caacb'
+            prop(draw,'circle',x,y,36,t,color)
     elif kind in ['mixed','puzzle-shapes','sorted','circles-red','circles-blue','sizes']:
         kinds = ['circle','square','triangle']
         if kind in ['circles-red','circles-blue','sizes']: kinds=['circle']*3

@@ -2,7 +2,7 @@
 
 A free-software Python pipeline that makes a complete original educational Short locally, validates it, and can publish it using the official YouTube Data API. **Uploads are OFF by default.** No LLM API, purchased assets, credit card, background server, or daily editing is needed.
 
-Pip Bunny and Tilly Turtle explore counting, colors, shapes, animal facts, kindness, visual puzzles, nature, space, and short stories. The repository includes **40 distinct, human-authored episodes**, five scenes each. It deliberately stops after these are used: add another reviewed content pack for continued operation. It does not pretend a finite template library can create unlimited original stories.
+Pip Bunny and Tilly Turtle explore counting, colors, shapes, animal facts, kindness, visual puzzles, nature, space, and short stories. The repository includes **40 distinct, authored episodes**, five scenes each. It deliberately stops after these are used: add another reviewed content pack for continued operation. It does not pretend a finite template library can create unlimited original stories.
 
 ## Start here
 

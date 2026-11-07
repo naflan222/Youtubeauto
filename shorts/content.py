@@ -1,4 +1,4 @@
-"""Human-authored stories. No downloaded scripts and no LLM service."""
+"""Authored stories. No downloaded scripts and no LLM service."""
 from dataclasses import dataclass
 import hashlib
 import json
@@ -61,16 +61,16 @@ TOPICS = [
           "star:4 star:2 star:2 star:4 star:4", "pairs,counting,numbers"),
     topic("circles", "shapes", "The Circle Has No Corners", "Recognize circles.",
           "Pip is searching for a shape with no corners today.|A circle curves all the way around, with no straight sides.|Tilly draws one big circle and one tiny circle beside it.|Their sizes are different, but both shapes are still circles.|Follow the round edge with your eyes, all the way home.",
-          "circle:1 circle:1 circle:2 circle:2 circle:1", "circles,shapes,geometry"),
+          "circle:1 circle:1 two-circle-sizes two-circle-sizes circle:1", "circles,shapes,geometry"),
     topic("triangles", "shapes", "Three Sides Make a Triangle", "Identify a triangle by its three sides.",
           "Tilly has a shape puzzle for Pip in the garden.|This shape has one straight side, then two, then three.|It also has three corners, where those straight sides meet.|A shape with three straight sides is called a triangle.|Big or small, our triangles always have three straight sides.",
           "triangle:1 triangle:1 triangle:1 triangle:2 triangle:3", "triangles,shapes,geometry"),
     topic("color-sort", "shapes", "Pip Sorts Red and Blue", "Group objects by color.",
           "Pip finds red and blue paper circles on the picnic mat.|He places the red circles together on one side of the mat.|Tilly places the blue circles together on the other side.|They have sorted the circles into groups using their colors.|Every circle has a place, and their colorful mat looks tidy.",
-          "mixed circles-red circles-blue sorted sorted", "colors,sorting,shapes"),
+          "circles-mixed circles-red circles-blue sorted-colors sorted-colors", "colors,sorting,shapes"),
     topic("squares", "shapes", "Four Equal Sides for a Square", "Recognize squares.",
           "Tilly draws a square for Pip's little paper house window.|It has four straight sides, and all four are equally long.|Its four corners look like the corner of a book.|Pip draws a smaller square, keeping those same special features.|Both are squares: four equal sides and four tidy right-angle corners.",
-          "square:1 square:1 square:1 square:2 square:2", "squares,shapes,geometry"),
+          "square:1 square:1 square:1 two-square-sizes two-square-sizes", "squares,shapes,geometry"),
     topic("mix-green", "shapes", "Yellow and Blue Paint Make Green", "Observe a common paint color mixture.",
           "Pip has yellow paint and blue paint for his garden picture.|Tilly puts a little of each color onto the mixing tray.|They slowly stir the two paints together with their pretend brush.|With these paints, yellow and blue mix into a lovely green.|Now they can paint green leaves around their bright paper flowers.",
           "paint-yellow paint-blue paint-mix leaf flowers", "colors,paint,color mixing"),
