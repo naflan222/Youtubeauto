@@ -10,7 +10,7 @@ Pip Bunny and Tilly Turtle explore counting, colors, shapes, animal facts, kindn
 
 Unzip the artifact and play `preview.mp4`. Artifacts expire after three days; rerun **Preview and tests** for a new video. Small sample scripts/reports remain in `examples/sample/`; videos are never committed to Git.
 
-Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 58 passed. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). No live YouTube upload has been attempted.
+Both the [preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42343665314) and the [daily workflow in preview mode](https://github.com/naflan222/Youtubeauto/actions/runs/42343665116) succeeded. The sample is 31.9 seconds, 1080 × 1920, 30 fps, with narrated captions. Local tests: 66 passed, including the Android authorization helper. See [observed verification and remaining account-dependent checks](docs/VERIFICATION.md). No live YouTube upload has been attempted.
 
 ## Start here
 

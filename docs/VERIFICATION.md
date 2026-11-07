@@ -4,7 +4,7 @@ Verified on **2026-11-07**. Rendering, uploads, and account setup are separate c
 
 ## Source and actual workflow runs
 
-The tested implementation is commit **`c86d1d5fb25307a0cdc379d6ade19e191736cace`**. Subsequent documentation commits only add these verification links.
+The initial rendering/upload implementation and sample were tested at commit **`c86d1d5fb25307a0cdc379d6ade19e191736cace`**. Later Android authorization changes are verified separately below.
 
 | Verification | Observed result |
 | --- | --- |
@@ -58,3 +58,9 @@ An independent **offline faster-whisper tiny.en** transcription of the final sam
 ## Still account-dependent
 
 The OAuth browser consent flow, actual authenticated channel identity, live discovery responses, resumable upload acceptance, YouTube processing, and public publication require the owner's Google/YouTube account. Their code paths have recovery tests, but those tests are not a claim of a live upload. Follow [SETUP.md](SETUP.md) for the exact one-time steps, then perform the first enabled manual publication.
+
+## Android authorization support
+
+Android setup support is committed at **`259e0aa552d269849dcd8478373e411497742863`**. The [updated GitHub preview workflow](https://github.com/naflan222/Youtubeauto/actions/runs/42344520053) succeeded, including a separate authorization-only environment, the tests, and a complete video preview. Local tests: **66 passed**. The isolated helper installation passed `pip check` without Piper, FFmpeg, or the Google API upload-client package. The uploader continues to use the official Google API client; the small helper uses Google's OAuth library and authorized transport to check the official channels endpoint.
+
+Tests cover manual-browser loopback settings, channel mismatch, absent offline tokens, existing-file preservation, private output permissions, external Termux browser registration, and redacted error handling. The actual Android browser/Google consent flow has **not** been observed with an Android device or the owner's account. Follow [ANDROID.md](ANDROID.md) to complete that account-dependent step.
