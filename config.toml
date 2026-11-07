@@ -12,6 +12,6 @@ target_time = "18:15"
 expected_channel_id = "UC9EhlngjJGxAA8Rc4vD15Hg"
 region = "US"
 category_name = "Education"
-upload_enabled = false
+upload_enabled = true
 # Ordinary fictional animation is not realistic footage of actual events.
 contains_synthetic_media = false
