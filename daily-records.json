@@ -9,5 +9,16 @@
     "publication_url": "https://www.youtube.com/shorts/zWQMNYgfM4Y",
     "completion_time": "2026-11-07T17:52:16.737674+00:00",
     "started_at": "2026-11-07T07:50:30.077686+00:00"
+  },
+  "wonder-2026-11-08": {
+    "job_id": "wonder-2026-11-08",
+    "topic": "squares",
+    "theme": "shapes",
+    "fingerprint": "ede1f84ccfbb1407377dbb5af20f5d989adf2d384ee13b555834e13f918f8d88",
+    "status": "upload-intent",
+    "video_id": null,
+    "publication_url": null,
+    "completion_time": null,
+    "started_at": "2026-11-08T18:06:44.559305+00:00"
   }
 }
