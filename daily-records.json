@@ -20,5 +20,16 @@
     "publication_url": "https://www.youtube.com/shorts/5ku4YdgxwhU",
     "completion_time": "2026-11-08T18:07:18.421356+00:00",
     "started_at": "2026-11-08T18:06:44.559305+00:00"
+  },
+  "wonder-2026-11-10": {
+    "job_id": "wonder-2026-11-10",
+    "topic": "size",
+    "theme": "puzzle",
+    "fingerprint": "1a798d373136c1bb8d0a370c574de4681924271e1357e9eda38dece3d7949751",
+    "status": "upload-intent",
+    "video_id": null,
+    "publication_url": null,
+    "completion_time": null,
+    "started_at": "2026-11-09T22:44:06.144518+00:00"
   }
 }
