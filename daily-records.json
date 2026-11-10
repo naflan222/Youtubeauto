@@ -37,10 +37,10 @@
     "topic": "count-five",
     "theme": "counting",
     "fingerprint": "673d101aab7cb616ec7e84c53b52f6cb204f6055080a438285a4ee9da8064598",
-    "status": "uploaded",
+    "status": "published",
     "video_id": "X36YgvBV6ZY",
-    "publication_url": null,
-    "completion_time": null,
+    "publication_url": "https://www.youtube.com/shorts/X36YgvBV6ZY",
+    "completion_time": "2026-11-10T20:02:02.525089+00:00",
     "started_at": "2026-11-10T20:01:27.621724+00:00"
   }
 }
