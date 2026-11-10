@@ -31,5 +31,16 @@
     "publication_url": "https://www.youtube.com/shorts/QMJoZ906d0M",
     "completion_time": "2026-11-09T22:44:40.085961+00:00",
     "started_at": "2026-11-09T22:44:06.144518+00:00"
+  },
+  "wonder-2026-11-11": {
+    "job_id": "wonder-2026-11-11",
+    "topic": "count-five",
+    "theme": "counting",
+    "fingerprint": "673d101aab7cb616ec7e84c53b52f6cb204f6055080a438285a4ee9da8064598",
+    "status": "upload-intent",
+    "video_id": null,
+    "publication_url": null,
+    "completion_time": null,
+    "started_at": "2026-11-10T20:01:27.621724+00:00"
   }
 }
