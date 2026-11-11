@@ -42,5 +42,16 @@
     "publication_url": "https://www.youtube.com/shorts/X36YgvBV6ZY",
     "completion_time": "2026-11-10T20:02:02.525089+00:00",
     "started_at": "2026-11-10T20:01:27.621724+00:00"
+  },
+  "wonder-2026-11-12": {
+    "job_id": "wonder-2026-11-12",
+    "topic": "cloud-picture",
+    "theme": "story",
+    "fingerprint": "6ff7095aa2188ae5337af1cf71ab1efefe0de7be777474219f8d8f158abf0540",
+    "status": "upload-intent",
+    "video_id": null,
+    "publication_url": null,
+    "completion_time": null,
+    "started_at": "2026-11-11T19:53:49.087580+00:00"
   }
 }
