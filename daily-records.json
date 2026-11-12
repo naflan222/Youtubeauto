@@ -53,5 +53,16 @@
     "publication_url": "https://www.youtube.com/shorts/XYACQ6pBFW8",
     "completion_time": "2026-11-11T19:54:23.627391+00:00",
     "started_at": "2026-11-11T19:53:49.087580+00:00"
+  },
+  "wonder-2026-11-13": {
+    "job_id": "wonder-2026-11-13",
+    "topic": "add-one",
+    "theme": "counting",
+    "fingerprint": "78534fabc3ebbf2a080d39ada7a4dfc6a98588065ac1da5a7ca4962704839b8c",
+    "status": "upload-intent",
+    "video_id": null,
+    "publication_url": null,
+    "completion_time": null,
+    "started_at": "2026-11-12T20:28:46.742507+00:00"
   }
 }
