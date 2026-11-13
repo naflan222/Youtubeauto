@@ -64,5 +64,16 @@
     "publication_url": "https://www.youtube.com/shorts/6lg2aSkqWeI",
     "completion_time": "2026-11-12T20:29:21.458553+00:00",
     "started_at": "2026-11-12T20:28:46.742507+00:00"
+  },
+  "wonder-2026-11-14": {
+    "job_id": "wonder-2026-11-14",
+    "topic": "patient-flower",
+    "theme": "story",
+    "fingerprint": "0462864bd1b37acf539abd0b95a79d57cd53f9d7dfe0b24fda7168f683ce9066",
+    "status": "upload-intent",
+    "video_id": null,
+    "publication_url": null,
+    "completion_time": null,
+    "started_at": "2026-11-13T20:04:35.106322+00:00"
   }
 }
